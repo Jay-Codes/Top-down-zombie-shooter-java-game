@@ -1,0 +1,32 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package jaycodes.topdown.zombie.game.main;
+import java.awt.Color;
+import jaycodes.topdown.zombie.game.display.*;
+
+/**
+ *
+ * @author joseph junior
+ */
+public class TopdownZombieGame {
+
+    /**
+     * @param args the command line arguments
+     */
+    
+    public static int width = 640, height = 480;
+    public static void main(String[] args) {
+        // TODO code application logic here
+        String title = "Zombie Game";
+        Display display = new Display(title,width,height,new Color(0, 0, 0));
+        
+        display.display();
+        
+        GameManager manager = new GameManager(display);
+        manager.start();
+    }
+    
+}
