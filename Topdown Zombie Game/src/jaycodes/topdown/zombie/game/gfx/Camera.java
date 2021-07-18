@@ -6,7 +6,6 @@
 package jaycodes.topdown.zombie.game.gfx;
 
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
-import jaycodes.topdown.zombie.game.input.InputManager;
 import jaycodes.topdown.zombie.game.math.Vector2f;
 
 

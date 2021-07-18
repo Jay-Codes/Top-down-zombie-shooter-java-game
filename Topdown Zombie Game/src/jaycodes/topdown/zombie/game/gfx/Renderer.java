@@ -18,17 +18,20 @@ public class  Renderer {
     
     public Camera camera;
     public AffineTransform transform;
+    public float xoffset = 0 , yoffset = 0;
 
     public Renderer() {
         transform = new AffineTransform();
     }
     
     public void drawImage(BufferedImage image ,Graphics2D g2d, Vector2f position,float rotation, float width, float height){
-        float xoffset  = position.x - camera.position.x+camera.vpWidth/2;
-        float yoffset = position.y - camera.position.y+camera.vpHeight/2;
+        xoffset  = (position.x - camera.position.x+camera.vpWidth/2)   - width/2;
+        yoffset  = (position.y - camera.position.y+camera.vpHeight/2)  - height/2;
         
-        transform = AffineTransform.getTranslateInstance(xoffset-width/2, yoffset-height/2);
+        transform = AffineTransform.getTranslateInstance(xoffset, yoffset);
         
+        
+        transform .rotate(rotation, width/2, height/2);
         
         g2d.setTransform(transform);
         g2d.drawImage(image, 0, 0,(int) width, (int)height, null);

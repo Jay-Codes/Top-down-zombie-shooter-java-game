@@ -12,12 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gameobject.entities.Player;
-import jaycodes.topdown.zombie.game.gfx.Camera;
-import jaycodes.topdown.zombie.game.gfx.Renderer;
 import jaycodes.topdown.zombie.game.gfx.Sound;
 import jaycodes.topdown.zombie.game.input.InputManager;
 import jaycodes.topdown.zombie.game.main.GameManager;
-import jaycodes.topdown.zombie.game.main.TopdownZombieGame;
 import jaycodes.topdown.zombie.game.math.Vector2f;
 import jaycodes.topdown.zombie.game.utilities.Util;
 

@@ -53,18 +53,19 @@ public class Player extends Entity{
     public void render(Graphics2D graphics) {
         renderer.drawImage(sprite, graphics, position, rotationAngle,width,height);
     }
-
     private void  rotateMouseFollow(){
         float mX,mY , pX ,pY ,opp ,adj;
         mX = InputManager.getMouseX();
         mY = InputManager.getMouseY();
-        pX = (float) (position.x + width/2) ;
-        pY = (float) (position.y + height/2) ;
+        pX = renderer.xoffset ;
+        pY = renderer.yoffset ;
         opp = mX - pX;
         adj = mY - pY;
         
         double value = Math.atan((double)opp/(double)adj);
-        rotationAngle = (float) -(value+2.2355708216122423);
+        
+        
+        rotationAngle =(float) ((value*-1 )+ 2.929998);
         
          if(adj < 0)
 		rotationAngle = (float) (-Math.PI + rotationAngle);

@@ -33,6 +33,8 @@ public class InputManager {
         keys.put("z", KeyEvent.VK_Z);
         keys.put("enter", KeyEvent.VK_ENTER);
         keys.put("escape", KeyEvent.VK_ESCAPE);
+        keys.put("up",KeyEvent.VK_UP);
+        keys.put("down", KeyEvent.VK_DOWN);
     }
             
     public static void update(){
