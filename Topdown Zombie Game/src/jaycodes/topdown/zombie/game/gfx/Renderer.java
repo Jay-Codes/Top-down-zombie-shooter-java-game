@@ -25,6 +25,7 @@ public class  Renderer {
     }
     
     public void drawImage(BufferedImage image ,Graphics2D g2d, Vector2f position,float rotation, float width, float height){
+
         xoffset  = (position.x - camera.position.x+camera.vpWidth/2)   - width/2;
         yoffset  = (position.y - camera.position.y+camera.vpHeight/2)  - height/2;
         

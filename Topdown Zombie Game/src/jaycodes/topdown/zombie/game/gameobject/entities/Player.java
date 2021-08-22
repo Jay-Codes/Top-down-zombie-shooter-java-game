@@ -7,9 +7,12 @@ package jaycodes.topdown.zombie.game.gameobject.entities;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jaycodes.topdown.zombie.game.gfx.animations.Animation;
+import jaycodes.topdown.zombie.game.gfx.animations.AnimationController;
 import jaycodes.topdown.zombie.game.input.InputManager;
 import jaycodes.topdown.zombie.game.math.Vector2f;
 import jaycodes.topdown.zombie.game.scene.Scene;
@@ -20,7 +23,9 @@ import jaycodes.topdown.zombie.game.utilities.Util;
  * @author Jay
  */
 public class Player extends Entity{
-
+    
+    Animation walk , attack;
+    AnimationController controller;
     public Player(Scene scene,Vector2f position){
         super(scene,position,125,125);
         name = "player";
@@ -31,6 +36,13 @@ public class Player extends Entity{
         
         try {
             sprite = Util.loadImageFromFile("resources/images/characters/player/test.png");
+            BufferedImage [] arr = Util.loadAnimationFromFile("resources/animations/zombie a/walk", 17);
+            walk = new Animation(arr,0.7f,"walk");
+            arr = Util.loadAnimationFromFile("resources/animations/zombie a/attack", 9);
+            attack = new  Animation(arr,0.3f,"attack");
+            
+            controller = new AnimationController(new Animation[]{walk,attack});
+            controller.setAnimation("walk");
         } catch (IOException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -40,7 +52,7 @@ public class Player extends Entity{
     
     @Override
     public void update() {
-        
+        manageAnimation();
         direction = new Vector2f();
         
         manageInput();
@@ -48,10 +60,21 @@ public class Player extends Entity{
         manageTransform();
         
     }
+    void manageAnimation(){
+        if (InputManager.getKeyPressed("q"))
+            controller.setAnimation("walk");
+        
+        if (InputManager.getKeyPressed("e"))
+            controller.setAnimation("attack");
+        
+        controller.update();
+        
+    }
 
     @Override
     public void render(Graphics2D graphics) {
         renderer.drawImage(sprite, graphics, position, rotationAngle,width,height);
+//        renderer.drawImage(controller.getFrame(), graphics, position, rotationAngle, width, height);
     }
     private void  rotateMouseFollow(){
         float mX,mY , pX ,pY ,opp ,adj;
@@ -63,7 +86,6 @@ public class Player extends Entity{
         adj = mY - pY;
         
         double value = Math.atan((double)opp/(double)adj);
-        
         
         rotationAngle =(float) ((value*-1 )+ 2.929998);
         

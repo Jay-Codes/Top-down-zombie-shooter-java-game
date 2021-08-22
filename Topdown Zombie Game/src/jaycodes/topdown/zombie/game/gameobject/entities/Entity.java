@@ -17,7 +17,7 @@ import jaycodes.topdown.zombie.game.scene.Scene;
 public abstract class Entity extends GameObject {
     protected float health;
     protected float speed ;
-    protected Vector2f direction;
+    protected Vector2f direction , velocity = new Vector2f(0,0);
     
     public Entity (Scene scene){
         super(scene);
@@ -43,6 +43,10 @@ public abstract class Entity extends GameObject {
 
     public Vector2f getDirection() {
         return direction;
+    }
+
+    public void setVelocity(Vector2f velocity) {
+        this.velocity = velocity;
     }
     
     

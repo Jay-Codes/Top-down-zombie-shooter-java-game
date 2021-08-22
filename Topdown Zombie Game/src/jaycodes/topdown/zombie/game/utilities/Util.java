@@ -22,6 +22,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Util {
     
     public static BufferedImage loadImageFromFile(String path) throws IOException{
+        File f = new File(path);
         BufferedImage img = ImageIO.read(new File (path));
         return img;
     }
@@ -42,5 +43,14 @@ public class Util {
         AudioInputStream audioInput = AudioSystem.getAudioInputStream(Util.class.getResourceAsStream("/"+path));
         c.open(audioInput);
         return c;
+    }
+    public static BufferedImage [] loadAnimationFromFile(String path,int frameCount) throws IOException{
+        BufferedImage arr [] = new BufferedImage[frameCount];
+        for (int i = 0 ; i <frameCount ;i++){
+            File f = new File(path);
+            BufferedImage img = ImageIO.read(new File (path+"/"+i+".png"));
+            arr[i]=img;
+        }
+        return  arr;
     }
 }
