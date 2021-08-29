@@ -83,9 +83,8 @@ public class GamePlayScene extends Scene{
     public void drawScene(Graphics2D graphics) {
         renderer.drawImage(map, graphics, position,0,width,height);
     }
-    
+
     public Player getPlayer(){
-        return (Player) gameObjects.get(0);
+        return (Player)gameObjects.get(0);
     }
-    
 }

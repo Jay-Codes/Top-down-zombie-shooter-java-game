@@ -7,6 +7,7 @@ package jaycodes.topdown.zombie.game.gameobject.entities.zombies;
 
 import java.awt.Graphics2D;
 import jaycodes.topdown.zombie.game.gameobject.entities.Entity;
+import jaycodes.topdown.zombie.game.gameobject.entities.ai.behaviours.Behaviour;
 import jaycodes.topdown.zombie.game.gfx.animations.AnimationController;
 import jaycodes.topdown.zombie.game.math.Vector2f;
 import jaycodes.topdown.zombie.game.scene.Scene;
@@ -17,6 +18,7 @@ import jaycodes.topdown.zombie.game.scene.Scene;
  */
 public abstract class Zombie extends  Entity{
     protected  AnimationController anim_controller;
+    protected Behaviour behaviour;
     
     public Zombie (Scene scene,Vector2f position , float width , float height){
         super(scene,position ,width ,height);
@@ -37,6 +39,10 @@ public abstract class Zombie extends  Entity{
         update_zombie();
         if(anim_controller!= null)
             anim_controller.update();
+        
+        if(behaviour!= null)
+            behaviour.update();
+        
         position = position.add(velocity);
     }
     
