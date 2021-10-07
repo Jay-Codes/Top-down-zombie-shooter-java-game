@@ -21,6 +21,8 @@ public class TopdownZombieGame {
     public static void main(String[] args) {
         // TODO code application logic here
         String title = "Zombie Game";
+//        width = 1280;
+//        height = 768;
         Display display = new Display(title,width,height,new Color(0, 0, 0));
         
         display.display();

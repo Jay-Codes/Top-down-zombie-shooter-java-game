@@ -6,6 +6,7 @@
 package jaycodes.topdown.zombie.game.gfx;
 
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 /**
  *
@@ -31,5 +32,12 @@ public class Sound {
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }else
             clip.loop(0);
+    }
+    public void setVolume(float volume){
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        float range = gainControl.getMaximum() - gainControl.getMinimum();
+        float gain = (range * volume) + gainControl.getMinimum();
+//        System.out.println(volume);
+        gainControl.setValue(gain);
     }
 }

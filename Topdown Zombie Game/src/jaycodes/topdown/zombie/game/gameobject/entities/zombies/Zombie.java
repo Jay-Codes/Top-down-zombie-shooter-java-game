@@ -19,7 +19,6 @@ import jaycodes.topdown.zombie.game.scene.Scene;
 public abstract class Zombie extends  Entity{
     protected  AnimationController anim_controller;
     protected Behaviour behaviour;
-    
     public Zombie (Scene scene,Vector2f position , float width , float height){
         super(scene,position ,width ,height);
         health = 100;
@@ -37,13 +36,20 @@ public abstract class Zombie extends  Entity{
     @Override
     public void update() {
         update_zombie();
-        if(anim_controller!= null)
-            anim_controller.update();
         
-        if(behaviour!= null)
-            behaviour.update();
+        if(anim_controller!= null) anim_controller.update();
+        
+        if (behaviour != null) behaviour.update();
         
         position = position.add(velocity);
+        
+        //Manage Rotation
+        double value = Math.atan((double)direction.y/(double)direction.x);
+        
+        rotationAngle =(float) ((value));
+        
+         if(direction.x < 0)
+		rotationAngle = (float) (-Math.PI + rotationAngle);
     }
     
     protected  abstract  void update_zombie();
@@ -53,7 +59,4 @@ public abstract class Zombie extends  Entity{
         if(anim_controller!= null)
             renderer.drawImage(anim_controller.getFrame(), graphics, position, rotationAngle, width, height);
     }
-    
-    
-    
 }

@@ -1,70 +1,51 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package jaycodes.topdown.zombie.game.gameobject.entities.ai.behaviours;
 
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gameobject.entities.Entity;
-import jaycodes.topdown.zombie.game.math.Vector2f;
 
 /**
  *
- * @author Jay
+ * @author jay
  */
-public class Dummy extends Behaviour{
+public class Dummy extends Behaviour {
 
-    GameObject target;
-    public float seconds = 6f ; 
-    long passed ;
-    public float sightRange = 200f;
-    public float maxFollowDistance = 400f; 
-    boolean spotted = false;
+    public float seconds =3f;
+    long passed, now;   
     
+    float sightRange = 175f , maxFollowDist = 350f;
+    boolean isFollowing = false;
+
     public Dummy(Entity us, GameObject target) {
-        super(us);
-        this.target=target;
-        direction = new Vector2f();
-        passed = System.currentTimeMillis();
+        super(us, target);
     }
     
-    Vector2f direction ;
-    
-    void random(){
-        float randx= (float)(Math.random()) - 0.5f;
-        float randy= (float)(Math.random()) - 0.5f;
-        direction =new Vector2f(randx,randy).normailize();
-    }
-
     @Override
-    public void update() {
-        steering.our_pos = us.getPosition();
-        long now = System.currentTimeMillis();
-//        random direction
-        if ( now - passed > seconds*1000){
-            random();
-            passed = now;
+    public void updateBehaviour() {
+        now = System.currentTimeMillis();
+        if (now - passed > seconds*1000) randomDirection();
+        
+        if( us.getPosition().distance(target.getPosition())<= sightRange){
+            isFollowing = true;
+            direction = steering.getDirectionTo(target.getPosition());
+        }
+        if( us.getPosition().distance(target.getPosition())<= maxFollowDist && isFollowing){
+            isFollowing = true;
+            direction = steering.getDirectionTo(target.getPosition());
+        }
+        else{
+            isFollowing = false;
         }
         
-//        move in the direction of the player
-        if ( us.getPosition().distance(target.getPosition()) <= sightRange ){
-             direction =   steering.getDirectionTo(target.getPosition()).normailize(); 
-             spotted = true;
-        }
-        else if (us.getPosition().distance(target.getPosition()) <= maxFollowDistance && spotted){
-            direction =   steering.getDirectionTo(target.getPosition()).normailize(); 
-            spotted = true;
-        }
-        else {
-            spotted = false;
-        }
-        
-        us.setVelocity(steering.getVelocity(direction, us.getSpeed()));
     }
     
-    public void setTarget(GameObject object){
-        target=object;
+    public  void randomDirection(){
+        direction.x =(float) (Math.random()-0.5);
+        direction.y =(float) (Math.random()-0.5);
+        direction = direction.normailize();
+        passed = now;
     }
-    
 }

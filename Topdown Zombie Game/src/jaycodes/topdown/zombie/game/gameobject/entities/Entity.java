@@ -44,9 +44,13 @@ public abstract class Entity extends GameObject {
     public Vector2f getDirection() {
         return direction;
     }
-    
-    public void setVelocity(Vector2f vel){
-        velocity = vel;
+
+    public void setVelocity(Vector2f velocity) {
+        this.velocity = velocity;
+    }
+
+    public void setDirection(Vector2f direction) {
+        this.direction = direction;
     }
     
 }

@@ -35,6 +35,11 @@ public class GamePlayScene extends Scene{
        
     }
 
+    @Override
+    public void startScene(){
+        super.startScene();
+        main.playSound();
+    }
     
 
     @Override
@@ -55,6 +60,7 @@ public class GamePlayScene extends Scene{
             //Initiialze sounds
 
             main = new Sound(Util.loadSoundFromFile("resources/sounds/mainmenusound/ambientsound.wav"));
+            main.setRepeat(true);
         } catch (Exception ex) {
             Logger.getLogger(GameManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,6 +74,7 @@ public class GamePlayScene extends Scene{
     }
     @Override
     public void updateScene() {
+        
         camera.centerOnGameObject(cameraTarget);
         if(InputManager.getKeyPressed("escape")){
             SceneManager.startScene("welcomescreen");
@@ -84,7 +91,10 @@ public class GamePlayScene extends Scene{
         renderer.drawImage(map, graphics, position,0,width,height);
     }
 
-    public Player getPlayer(){
-        return (Player)gameObjects.get(0);
+    public Player GetPlayer(){
+        for (GameObject gobj :gameObjects)
+            if(gobj instanceof Player) return  (Player) gobj;
+        
+        return null;
     }
 }
