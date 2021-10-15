@@ -19,6 +19,7 @@ public abstract class Behaviour {
     protected Steering steering;
     protected Vector2f velocity,direction;
     protected GameObject target;
+    public float attackRange = 20f;
 
     public Behaviour(Entity us,GameObject target) {
         this.us = us;
@@ -34,12 +35,19 @@ public abstract class Behaviour {
     }
     
     
-    public void update(){
+    public void update(){  
         steering.our_pos = us.getPosition();
         updateBehaviour();
         velocity = steering.getVelocity(direction, us.getSpeed());
         us.setDirection(direction);
         us.setVelocity(velocity);
+        if(us.getPosition().distance(target.getPosition()) < attackRange) handleArrival() ;
+        else us.targetHasnotArrived();
+    }
+    
+    public void handleArrival(){
+        us.setVelocity(new Vector2f());
+        us.targetHasArrived();
     }
 
     public void setTarget(GameObject target) {

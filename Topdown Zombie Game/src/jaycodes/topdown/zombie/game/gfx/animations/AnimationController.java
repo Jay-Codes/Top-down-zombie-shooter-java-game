@@ -30,6 +30,9 @@ public class AnimationController {
    }
    
    public void setAnimation(String animName){
+       
+       if(currenAnimation!= null && currenAnimation.name.equals(animName)) return;
+       
        currenAnimation = animations.get(animName);
        currenAnimation.reset();
    }

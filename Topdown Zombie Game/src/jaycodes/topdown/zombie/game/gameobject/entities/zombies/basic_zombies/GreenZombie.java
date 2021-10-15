@@ -34,6 +34,7 @@ public class GreenZombie extends Zombie{
         health = 50;
         speed = 1.2f;
         direction = new Vector2f();
+        damage =100f;
     }
     @Override
     protected void update_zombie() {
@@ -45,9 +46,15 @@ public class GreenZombie extends Zombie{
     public void init() {
         try {
             BufferedImage [] arr = Util.loadAnimationFromFile("resources/animations/zombie a/walk", 17);
-            walk = new Animation(arr,0.7f,"walk");
+            walk = new Animation(arr,0.7f,"walk") {
+                @Override
+                public void onAnimationComplete() {}
+            };
             arr = Util.loadAnimationFromFile("resources/animations/zombie a/attack", 9);
-            attack = new  Animation(arr,0.3f,"attack");
+            attack = new  Animation(arr,0.3f,"attack") {
+                @Override
+                public void onAnimationComplete() {attackPlayer();}
+            };
             anim_controller = new AnimationController(new Animation[]{walk,attack});
             steer = new Steering(position);
             //behaviour = new Seek(this,((GamePlayScene)scene).GetPlayer());
@@ -55,6 +62,20 @@ public class GreenZombie extends Zombie{
         } catch (IOException ex) {
             Logger.getLogger(GreenZombie.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public void targetHasArrived() {
+        anim_controller.setAnimation("attack");
+    }
+
+    @Override
+    public void targetHasnotArrived() {
+        anim_controller.setAnimation("walk");
+    }
+    
+    public void attackPlayer(){
+        ((GamePlayScene)scene).GetPlayer().hit(damage);
     }
     
 }

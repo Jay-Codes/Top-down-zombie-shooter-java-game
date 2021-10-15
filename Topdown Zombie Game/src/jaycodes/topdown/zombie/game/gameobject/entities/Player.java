@@ -29,6 +29,7 @@ public class Player extends Entity{
     public Player(Scene scene,Vector2f position){
         super(scene,position,125,125);
         name = "player";
+        health = 1000f;
     }
     
     @Override
@@ -37,9 +38,15 @@ public class Player extends Entity{
         try {
             sprite = Util.loadImageFromFile("resources/images/characters/player/test.png");
             BufferedImage [] arr = Util.loadAnimationFromFile("resources/animations/zombie a/walk", 17);
-            walk = new Animation(arr,0.7f,"walk");
+            walk = new Animation(arr,0.7f,"walk") {
+                @Override
+                public void onAnimationComplete() {}
+            };
             arr = Util.loadAnimationFromFile("resources/animations/zombie a/attack", 9);
-            attack = new  Animation(arr,0.3f,"attack");
+            attack = new  Animation(arr,0.3f,"attack") {
+                @Override
+                public void onAnimationComplete() {}
+            };
             
             controller = new AnimationController(new Animation[]{walk,attack});
             controller.setAnimation("walk");
@@ -118,5 +125,14 @@ public class Player extends Entity{
         
         transform.rotate(rotationAngle, width/2,height/2);
     }
-    
+
+    @Override
+    public void targetHasArrived() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void targetHasnotArrived() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

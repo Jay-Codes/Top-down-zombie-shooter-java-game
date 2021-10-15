@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  *
  * @author Jay
  */
-public class Animation {
+public abstract class Animation {
     public String name;
     BufferedImage [] frames;
     float duration; // in seconds
@@ -44,12 +44,17 @@ public class Animation {
         
         
         if(index >=frames.length-1)
+        {
             index=0;
+            onAnimationComplete();
+        }
         
         index ++;
         passed = now;
         
     }
+    
+    public abstract void onAnimationComplete();
     
     public BufferedImage getCurrentFrame(){
         return  frames[(int)index];
@@ -58,4 +63,6 @@ public class Animation {
     public void reset(){
         index=0;
     }
+    
+    
 }

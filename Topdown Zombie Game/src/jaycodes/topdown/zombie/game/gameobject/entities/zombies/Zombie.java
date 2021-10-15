@@ -19,6 +19,7 @@ import jaycodes.topdown.zombie.game.scene.Scene;
 public abstract class Zombie extends  Entity{
     protected  AnimationController anim_controller;
     protected Behaviour behaviour;
+    protected  float damage =10f;
     public Zombie (Scene scene,Vector2f position , float width , float height){
         super(scene,position ,width ,height);
         health = 100;

@@ -53,4 +53,13 @@ public abstract class Entity extends GameObject {
         this.direction = direction;
     }
     
+    public void hit(float damage){
+        health-= damage;
+        health = health < 0? 0 : health;
+        System.out.println(health);
+    }
+    
+    public abstract void targetHasArrived();
+    public abstract  void targetHasnotArrived();
+    
 }
