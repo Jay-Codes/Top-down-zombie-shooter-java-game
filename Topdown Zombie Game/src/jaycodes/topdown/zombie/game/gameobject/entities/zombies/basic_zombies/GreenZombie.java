@@ -59,6 +59,7 @@ public class GreenZombie extends Zombie{
             steer = new Steering(position);
             //behaviour = new Seek(this,((GamePlayScene)scene).GetPlayer());
             behaviour = new Dummy(this,((GamePlayScene)scene).GetPlayer());
+            
         } catch (IOException ex) {
             Logger.getLogger(GreenZombie.class.getName()).log(Level.SEVERE, null, ex);
         }

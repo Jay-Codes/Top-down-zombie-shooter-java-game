@@ -54,7 +54,7 @@ public abstract class Scene extends GameObject{
         updateScene();
         camera.update();
         for (int i = 0; i< gameObjects.size();i++){
-            gameObjects.get(i).update();
+            gameObjects.get(i).updateObject();
         }
             
     }
@@ -64,7 +64,7 @@ public abstract class Scene extends GameObject{
     public void render(Graphics2D graphics) {
         drawScene(graphics);
         for (int i = 0; i< gameObjects.size();i++){
-            gameObjects.get(i).render(graphics);
+            gameObjects.get(i).renderObject(graphics);
         }
     }
     
