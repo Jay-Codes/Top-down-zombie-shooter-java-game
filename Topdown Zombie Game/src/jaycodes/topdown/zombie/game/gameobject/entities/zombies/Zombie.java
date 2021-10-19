@@ -6,6 +6,7 @@
 package jaycodes.topdown.zombie.game.gameobject.entities.zombies;
 
 import java.awt.Graphics2D;
+import jaycodes.topdown.zombie.game.gameobject.CollisionListener;
 import jaycodes.topdown.zombie.game.gameobject.entities.Entity;
 import jaycodes.topdown.zombie.game.gameobject.entities.ai.behaviours.Behaviour;
 import jaycodes.topdown.zombie.game.gfx.animations.AnimationController;
@@ -16,7 +17,7 @@ import jaycodes.topdown.zombie.game.scene.Scene;
  *
  * @author Jay
  */
-public abstract class Zombie extends  Entity{
+public abstract class Zombie extends  Entity implements CollisionListener{
     protected  AnimationController anim_controller;
     protected Behaviour behaviour;
     protected  float damage =10f;

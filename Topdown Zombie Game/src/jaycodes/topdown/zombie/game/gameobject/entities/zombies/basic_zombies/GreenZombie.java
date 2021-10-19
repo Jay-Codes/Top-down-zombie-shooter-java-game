@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jaycodes.topdown.zombie.game.gameobject.Collider;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gameobject.entities.ai.Steering;
 import jaycodes.topdown.zombie.game.gameobject.entities.ai.behaviours.Dummy;
@@ -60,6 +61,8 @@ public class GreenZombie extends Zombie{
             //behaviour = new Seek(this,((GamePlayScene)scene).GetPlayer());
             behaviour = new Dummy(this,((GamePlayScene)scene).GetPlayer());
             
+            addComponent(new Collider(this,this));
+            
         } catch (IOException ex) {
             Logger.getLogger(GreenZombie.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,6 +80,11 @@ public class GreenZombie extends Zombie{
     
     public void attackPlayer(){
         ((GamePlayScene)scene).GetPlayer().hit(damage);
+    }
+
+    @Override
+    public void onCollision(GameObject gameObject) {
+        System.out.println("Mr Zombie collided with"+ gameObject.getName());
     }
     
 }

@@ -55,6 +55,12 @@ public abstract class GameObject {
     }
 
     public abstract void init();
+    public void initObject(){
+        init();
+        for (Component component: components)
+            if(component instanceof Collider)
+                scene.addCollider((Collider)component);
+    }
     public abstract void update();
     public abstract void render(Graphics2D graphics);
     

@@ -7,6 +7,7 @@ package jaycodes.topdown.zombie.game.scene;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import jaycodes.topdown.zombie.game.gameobject.Collider;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gfx.Camera;
 import jaycodes.topdown.zombie.game.gfx.Renderer;
@@ -20,6 +21,8 @@ import jaycodes.topdown.zombie.game.math.Vector2f;
 public abstract class Scene extends GameObject{
 
     protected ArrayList<GameObject> gameObjects ;
+    protected  ArrayList<Collider> colliders = new ArrayList<Collider>();
+    
     protected boolean hasBeenStarted = false;
     Camera camera;
 
@@ -42,7 +45,7 @@ public abstract class Scene extends GameObject{
         camera.width=width;
         camera.height=height;
         for (int i = 0; i< gameObjects.size();i++){
-            gameObjects.get(i).init();
+            gameObjects.get(i).initObject();
         }
         hasBeenStarted=true;
     }
@@ -101,5 +104,17 @@ public abstract class Scene extends GameObject{
                 temp = gameObject;
         }
         return temp;
+    }
+
+    public ArrayList<Collider> getColliders() {
+        return colliders;
+    }
+    
+    public void addCollider(Collider collider){
+        colliders.add(collider);
+    }
+    
+    public void  removeCollider(Collider collider){
+        colliders.remove(collider);
     }
 }

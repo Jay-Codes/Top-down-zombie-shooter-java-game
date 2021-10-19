@@ -11,6 +11,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jaycodes.topdown.zombie.game.gameobject.Collider;
+import jaycodes.topdown.zombie.game.gameobject.CollisionListener;
+import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gfx.animations.Animation;
 import jaycodes.topdown.zombie.game.gfx.animations.AnimationController;
 import jaycodes.topdown.zombie.game.input.InputManager;
@@ -22,7 +25,7 @@ import jaycodes.topdown.zombie.game.utilities.Util;
  *
  * @author Jay
  */
-public class Player extends Entity{
+public class Player extends Entity implements  CollisionListener{
     
     Animation walk , attack;
     AnimationController controller;
@@ -50,6 +53,9 @@ public class Player extends Entity{
             
             controller = new AnimationController(new Animation[]{walk,attack});
             controller.setAnimation("walk");
+            
+            addComponent(new Collider(this,this));
+            
         } catch (IOException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -134,5 +140,10 @@ public class Player extends Entity{
     @Override
     public void targetHasnotArrived() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onCollision(GameObject gameObject) {
+        System.out.println(gameObject.getName());
     }
 }
