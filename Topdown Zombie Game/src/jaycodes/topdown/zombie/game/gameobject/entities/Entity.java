@@ -56,7 +56,6 @@ public abstract class Entity extends GameObject {
     public void hit(float damage){
         health-= damage;
         health = health < 0? 0 : health;
-        System.out.println(health);
     }
     
     public abstract void targetHasArrived();

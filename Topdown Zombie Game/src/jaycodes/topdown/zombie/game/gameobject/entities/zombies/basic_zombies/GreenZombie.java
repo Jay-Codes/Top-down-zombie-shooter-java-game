@@ -84,7 +84,7 @@ public class GreenZombie extends Zombie{
 
     @Override
     public void onCollision(GameObject gameObject) {
-        System.out.println("Mr Zombie collided with"+ gameObject.getName());
+//        System.out.println("Mr Zombie collided with"+ gameObject.getName());
     }
     
 }

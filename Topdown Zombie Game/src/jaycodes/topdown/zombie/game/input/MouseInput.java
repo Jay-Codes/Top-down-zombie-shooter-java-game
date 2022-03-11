@@ -19,6 +19,20 @@ public class MouseInput implements MouseWheelListener , MouseMotionListener ,Mou
 
     public static int x ,y;
     public static boolean mouseMoving= false;
+    
+    public static  boolean buttons [];
+    public static  boolean prevButtonPresses [];
+
+    public MouseInput() {
+        initButtons(100);
+    }
+    
+    
+    
+    public void initButtons(int keys){
+        this.buttons = new boolean[keys];
+        this.prevButtonPresses = new boolean[keys];
+    }
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
 //        System.out.println(e.getScrollAmount());
@@ -43,10 +57,22 @@ public class MouseInput implements MouseWheelListener , MouseMotionListener ,Mou
 
     @Override
     public void mousePressed(MouseEvent e) {
+        prevButtonPresses[e.getButton()] = buttons[e.getButton()];
+        try {
+            buttons[e.getButton()] = true;
+        } catch (Exception ex) {
+
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        prevButtonPresses[e.getButton()] = false;
+        try {
+            buttons[e.getButton()] = false;
+        } catch (Exception ex) {
+
+        }
     }
 
     @Override
@@ -55,5 +81,16 @@ public class MouseInput implements MouseWheelListener , MouseMotionListener ,Mou
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+    
+    
+     public static boolean getButtonPressed(int key){
+        return buttons[key];
+    }
+    public static boolean getPrevButtonPress(int key){
+        return prevButtonPresses[key];
+    }
+    public static void resetButtonPrevPress(int key){
+        prevButtonPresses[key]=false;
     }
 }

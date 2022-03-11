@@ -5,7 +5,7 @@
  */
 package jaycodes.topdown.zombie.game.main;
 import java.awt.Color;
-import jaycodes.topdown.zombie.game.display.*;
+import jaycodes.topdown.zombie.game.display.Display;
 
 /**
  *

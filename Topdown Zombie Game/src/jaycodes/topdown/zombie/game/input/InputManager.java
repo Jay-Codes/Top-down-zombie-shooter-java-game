@@ -6,6 +6,7 @@
 package jaycodes.topdown.zombie.game.input;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.HashMap;
 
 /**
@@ -15,9 +16,11 @@ import java.util.HashMap;
 public class InputManager {
     
     private static HashMap<String, Integer> keys;
+    private static HashMap<String, Integer> buttons;
 
     public InputManager() {
         keys = new HashMap<String,Integer>();
+        buttons = new HashMap<String,Integer>();
         keys.put("w", KeyEvent.VK_W);
         keys.put("a", KeyEvent.VK_A);
         keys.put("s", KeyEvent.VK_S);
@@ -35,11 +38,37 @@ public class InputManager {
         keys.put("escape", KeyEvent.VK_ESCAPE);
         keys.put("up",KeyEvent.VK_UP);
         keys.put("down", KeyEvent.VK_DOWN);
+        
+        buttons.put("right mouse", MouseEvent.BUTTON3);
+        buttons.put("left mouse", MouseEvent.BUTTON1);
+        buttons.put("middle mouse", MouseEvent.BUTTON2);
     }
             
     public static void update(){
     }
+    public static boolean isMouseBtnFirstPress(int btn){
+        boolean prev = MouseInput.getPrevButtonPress(btn);
+        
+        boolean result = false;
+        
+        if (MouseInput.getPrevButtonPress(btn))
+            result = false;
+        else if(!prev & MouseInput.getButtonPressed(btn))
+            result = true;
+        
+        MouseInput.prevButtonPresses[btn]=true;
+        
+        return  result;
+    }
     
+    public static boolean getMouseButtonPressed(int btn){
+        try {
+            return MouseInput.getButtonPressed(btn);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
     public static boolean isFirstPress(int key){
         
         boolean prev = KeyInput.getPrevKeyPress(key);
@@ -60,7 +89,7 @@ public class InputManager {
         try {
             return KeyInput.getKeyPressed(keys.get(key));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             return false;
         }
     }
@@ -68,6 +97,23 @@ public class InputManager {
     public static boolean isFirstPressed(String key){
         try {
             return isFirstPress(keys.get(key));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public static boolean getMouseKeyPressed(String key){
+        try {
+            return MouseInput.getButtonPressed(buttons.get(key));
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
+    
+    public static boolean isMouseFirstPressed(String key){
+        try {
+            return isMouseBtnFirstPress(buttons.get(key));
         } catch (Exception e) {
             return false;
         }

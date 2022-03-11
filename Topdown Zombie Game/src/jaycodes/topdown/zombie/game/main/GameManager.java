@@ -11,6 +11,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import jaycodes.topdown.zombie.game.display.Display;
 import jaycodes.topdown.zombie.game.input.InputManager;
+import jaycodes.topdown.zombie.game.input.MouseInput;
 import jaycodes.topdown.zombie.game.scene.GamePlayScene;
 import jaycodes.topdown.zombie.game.scene.Scene;
 import jaycodes.topdown.zombie.game.scene.SceneManager;

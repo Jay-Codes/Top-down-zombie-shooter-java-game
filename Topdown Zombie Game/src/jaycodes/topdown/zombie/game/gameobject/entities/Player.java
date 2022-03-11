@@ -119,6 +119,10 @@ public class Player extends Entity implements  CollisionListener{
             direction.x++;
         if(InputManager.isFirstPressed("grenade"))
             System.out.println("first time g was pressed");
+        
+//        if (InputManager.isMouseFirstPressed("right mouse"))
+//            System.out.println("left mouse bro");
+        
     }
     
     private void manageTransform(){
@@ -144,6 +148,6 @@ public class Player extends Entity implements  CollisionListener{
 
     @Override
     public void onCollision(GameObject gameObject) {
-        System.out.println(gameObject.getName());
+//        System.out.println(gameObject.getName());
     }
 }
