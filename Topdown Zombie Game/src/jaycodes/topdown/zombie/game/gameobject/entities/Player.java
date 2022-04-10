@@ -86,8 +86,7 @@ public class Player extends Entity implements  CollisionListener{
         Vector2f shootDirection = mouse.sub(getOnScreenCoordinates());
         pistol.setDirection(shootDirection);
         pistol.setPosition(position);
-        if ( InputManager.isMouseFirstPressed("left mouse"))
-            pistol.shoot();
+        pistol.shoot();
     }
     
     void manageAnimation(){

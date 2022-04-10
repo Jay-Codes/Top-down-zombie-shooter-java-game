@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gameobject.projectiles.Bullet;
+import jaycodes.topdown.zombie.game.input.InputManager;
 import jaycodes.topdown.zombie.game.math.Vector2f;
 import jaycodes.topdown.zombie.game.scene.Scene;
 
@@ -21,7 +22,8 @@ import jaycodes.topdown.zombie.game.scene.Scene;
 public class Gun extends GameObject{
    float damage=  10;
    float speed =  5;
-   float fireRate = 1;
+   float fireRate = 6;
+   boolean isAuto = false;
     Vector2f direction = new Vector2f();
     ActionListener action = new ActionListener() {
        @Override
@@ -36,12 +38,20 @@ public class Gun extends GameObject{
         int delay = (int) (1000/fireRate);
         shooTimer = new Timer(delay, action);
         shooTimer.setRepeats(false);
+        isAuto = true;
     }
     
     
     public void shoot(){
-       if (shooTimer.isRunning()) return;
-       shooTimer.start();
+     if (shooTimer.isRunning()) return;
+     if(!isAuto){
+        if ( InputManager.isMouseFirstPressed("left mouse"))
+            shooTimer.start();
+     }else {
+         if (InputManager.getMouseKeyPressed("left mouse"))
+             shooTimer.start();
+     }
+     
     }
 
     @Override
