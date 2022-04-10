@@ -3,6 +3,8 @@ package jaycodes.topdown.zombie.game.gameobject.weapons;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gameobject.projectiles.Bullet;
@@ -21,24 +23,24 @@ import jaycodes.topdown.zombie.game.scene.Scene;
  */
 public class Gun extends GameObject{
    float damage=  10;
-   float speed =  5;
-   float fireRate = 6;
+   float speed =  15;
+   float fireRate = 4;
    boolean isAuto = false;
+   int bursts = 0;
+   Timer burstTimer ;
+   int remainingBursts=1;
+   
+   
     Vector2f direction = new Vector2f();
-    ActionListener action = new ActionListener() {
-       @Override
-       public void actionPerformed(ActionEvent e) { 
-           scene.addProjectile(new Bullet(scene,damage ,position, direction , speed));
-       }
-    };
-    Timer shooTimer;
+    
 
     public Gun(Scene scene) {
         super(scene);
         int delay = (int) (1000/fireRate);
-        shooTimer = new Timer(delay, action);
+        shooTimer = new Timer(delay, doShoot);
         shooTimer.setRepeats(false);
-        isAuto = true;
+//        isAuto = true;
+        bursts = 10;
     }
     
     
@@ -71,6 +73,29 @@ public class Gun extends GameObject{
         this.position = position;
     }
     
+    ActionListener doShoot = (e)-> { 
+        scene.addProjectile(new Bullet(scene,damage ,position, direction , speed));
+        
+        if (bursts > 1){
+            
+            remainingBursts = bursts -1;
+            
+            ActionListener  doBurst = (event) -> {
+                
+                remainingBursts --;
+                scene.addProjectile(new Bullet(scene,damage ,position, direction , speed));
+                
+                if (remainingBursts <=0)
+                    burstTimer.stop();
+            };
+            
+            burstTimer = new Timer(50, doBurst);
+            burstTimer.start();
+               
+        }
+    };
+    
+    Timer shooTimer;
     
     
 }
