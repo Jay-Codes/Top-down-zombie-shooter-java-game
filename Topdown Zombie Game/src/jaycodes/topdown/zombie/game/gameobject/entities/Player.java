@@ -15,6 +15,7 @@ import jaycodes.topdown.zombie.game.gameobject.Collider;
 import jaycodes.topdown.zombie.game.gameobject.CollisionListener;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gameobject.weapons.Gun;
+import jaycodes.topdown.zombie.game.gameobject.weapons.Shotgun;
 import jaycodes.topdown.zombie.game.gfx.animations.Animation;
 import jaycodes.topdown.zombie.game.gfx.animations.AnimationController;
 import jaycodes.topdown.zombie.game.input.InputManager;
@@ -58,7 +59,7 @@ public class Player extends Entity implements  CollisionListener{
             
             addComponent(new Collider(this,this));
             
-            pistol = new Gun(scene);
+            pistol = new Shotgun(scene);
             
         } catch (IOException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);

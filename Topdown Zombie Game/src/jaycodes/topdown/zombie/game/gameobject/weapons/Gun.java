@@ -1,10 +1,7 @@
 
 package jaycodes.topdown.zombie.game.gameobject.weapons;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Timer;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gameobject.projectiles.Bullet;
@@ -22,14 +19,14 @@ import jaycodes.topdown.zombie.game.scene.Scene;
  * @author Jay
  */
 public class Gun extends GameObject{
-   float damage=  10;
-   float speed =  15;
-   float fireRate = 14;
-   boolean isAuto = false;
-   int bursts = 0;
+   public float damage=  10;
+   public float speed =  15;
+   public float fireRate = 30;
+   public boolean isAuto = false;
+   public int bursts = 0;
    Timer burstTimer ;
-   int remainingBursts=1;
-   float accuracy = 80;
+   private int remainingBursts=1;
+   public float accuracy = 70;
    
    
     Vector2f direction = new Vector2f();
@@ -41,16 +38,19 @@ public class Gun extends GameObject{
         shooTimer = new Timer(delay, doShoot);
         shooTimer.setRepeats(false);
         isAuto = true;
-        bursts = 2;
+//        bursts = 2;
     }
     
-    void releaseBullet(){
+    private void releaseBullet(){
         float baseAngle = 45;
         float spread = baseAngle - baseAngle * (accuracy /100);
         double value  = Math.random() -0.5;
         double angle  = (value *2  ) * spread;
         Vector2f dir = direction.rotateAngle(angle);
-        scene.addProjectile(new Bullet(scene,damage ,position,dir , speed));
+        shootBullet(dir);
+    }
+    protected void shootBullet(Vector2f direction){
+        scene.addProjectile(new Bullet(scene,damage ,position,direction , speed));
     }
     public void shoot(){
      if (shooTimer.isRunning()) return;

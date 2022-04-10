@@ -4,6 +4,7 @@
  */
 package jaycodes.topdown.zombie.game.gameobject.projectiles;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.math.Vector2f;
@@ -36,7 +37,10 @@ public class Bullet extends  Projectile{
 
     @Override
     public void render(Graphics2D graphics) {
+        Color c = graphics.getColor();
+        graphics.setColor(new Color(249,207,87));
         renderer.fillRect(graphics, position, 5, 5);
+        graphics.setColor(c);
     }
 
     @Override
