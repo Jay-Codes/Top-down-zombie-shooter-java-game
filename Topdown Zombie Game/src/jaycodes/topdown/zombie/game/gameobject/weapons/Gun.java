@@ -19,9 +19,9 @@ import jaycodes.topdown.zombie.game.scene.Scene;
  * @author Jay
  */
 public class Gun extends GameObject{
-   public float damage=  10;
+   public float damage=  5;
    public float speed =  15;
-   public float fireRate = 30;
+   public float fireRate = 8;
    public boolean isAuto = false;
    public int bursts = 0;
    Timer burstTimer ;
@@ -38,7 +38,7 @@ public class Gun extends GameObject{
         shooTimer = new Timer(delay, doShoot);
         shooTimer.setRepeats(false);
         isAuto = true;
-//        bursts = 2;
+        bursts = 2;
     }
     
     private void releaseBullet(){

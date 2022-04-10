@@ -36,6 +36,7 @@ public abstract class Projectile extends GameObject implements CollisionListener
         this.speed = speed;
         this.velocity = velocity;
         this.collider = new Collider(this,this);
+        addComponent(new Collider(this, this));
     }
     
     

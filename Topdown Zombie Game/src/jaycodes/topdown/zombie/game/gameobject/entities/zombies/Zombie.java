@@ -6,6 +6,7 @@
 package jaycodes.topdown.zombie.game.gameobject.entities.zombies;
 
 import java.awt.Graphics2D;
+import jaycodes.topdown.zombie.game.gameobject.Collider;
 import jaycodes.topdown.zombie.game.gameobject.CollisionListener;
 import jaycodes.topdown.zombie.game.gameobject.entities.Entity;
 import jaycodes.topdown.zombie.game.gameobject.entities.ai.behaviours.Behaviour;
@@ -33,6 +34,7 @@ public abstract class Zombie extends  Entity implements CollisionListener{
         super.health = health;
         super.speed = speed;
         direction = new Vector2f();
+        addComponent(new Collider(this, this));
     }
 
     @Override

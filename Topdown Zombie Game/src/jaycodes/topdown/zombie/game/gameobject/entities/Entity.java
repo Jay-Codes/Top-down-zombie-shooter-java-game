@@ -15,20 +15,20 @@ import jaycodes.topdown.zombie.game.scene.Scene;
  * @author Jay
  */
 public abstract class Entity extends GameObject {
-    protected float health;
+    protected float health ,MAX_HEALTH;
     protected float speed ;
     protected Vector2f direction , velocity = new Vector2f(0,0);
     
     public Entity (Scene scene){
         super(scene);
-        health = 100;
+        MAX_HEALTH = health = 100;
         speed = 1.2f;
         direction = new Vector2f();
     }
     
     public Entity (Scene scene,Vector2f position , float width , float height){
         super(scene,position ,width ,height);
-        health = 100;
+        MAX_HEALTH = health = 100;
         speed = 1.2f;
         direction = new Vector2f();
     }
@@ -57,6 +57,11 @@ public abstract class Entity extends GameObject {
         health-= damage;
         health = health < 0? 0 : health;
     }
+
+    public float getMAX_HEALTH() {
+        return MAX_HEALTH;
+    }
+    
     
     public abstract void targetHasArrived();
     public abstract  void targetHasnotArrived();

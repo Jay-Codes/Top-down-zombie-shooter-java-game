@@ -7,6 +7,7 @@ package jaycodes.topdown.zombie.game.gameobject.projectiles;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
+import jaycodes.topdown.zombie.game.gameobject.entities.zombies.Zombie;
 import jaycodes.topdown.zombie.game.math.Vector2f;
 import jaycodes.topdown.zombie.game.scene.Scene;
 
@@ -45,6 +46,19 @@ public class Bullet extends  Projectile{
 
     @Override
     public void onCollision(GameObject gameObject) {
+        if (gameObject instanceof Zombie)
+        {
+            Zombie  z = (Zombie)gameObject;
+            z.hit(damage);
+            
+            
+            if (z.getHealth() <= 0){
+                scene.getGameObjects().remove(z);
+                
+            }
+        }
+        
+        scene.getGameObjects().remove(this);
     }
     
 }

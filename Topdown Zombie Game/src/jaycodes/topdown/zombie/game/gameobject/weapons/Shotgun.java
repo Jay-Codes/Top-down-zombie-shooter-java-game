@@ -13,7 +13,7 @@ import jaycodes.topdown.zombie.game.scene.Scene;
  * @author Jay
  */
 public class Shotgun extends Gun {
-    int bulletAmnt =10;
+    int bulletAmnt = 10;
     float spreadAngle = 15;
 
     public Shotgun(Scene scene) {

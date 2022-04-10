@@ -32,7 +32,7 @@ public class GreenZombie extends Zombie{
     Animation walk , attack;
     public GreenZombie (Scene scene,Vector2f position){
         super(scene,position ,120 ,120);
-        health = 50;
+        health = 100;
         speed = 1.2f;
         direction = new Vector2f();
         damage =100f;

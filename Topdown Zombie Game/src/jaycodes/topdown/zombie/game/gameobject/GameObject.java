@@ -72,7 +72,7 @@ public abstract class GameObject {
     }
     public void renderObject(Graphics2D graphics){
         render(graphics);
-        for (Component component : components) component.render(graphics);
+        for (Component component : components) component.renderComponent(graphics);
     }
     
     

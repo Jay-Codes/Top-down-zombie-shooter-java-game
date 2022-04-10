@@ -13,6 +13,7 @@ import java.awt.Graphics2D;
 public abstract class Component {
     public GameObject gameObject;
     public boolean isActive = true;
+    public boolean shouldRender = false;
 
     public Component(GameObject gameObject) {
         this.gameObject = gameObject;
@@ -27,6 +28,8 @@ public abstract class Component {
     public void renderComponent(Graphics2D g){
         if(!isActive)
            return;
+        if(!shouldRender)return;
+        System.out.println(shouldRender);
         render(g);
     }
     

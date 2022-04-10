@@ -36,6 +36,7 @@ public class Player extends Entity implements  CollisionListener{
         super(scene,position,125,125);
         name = "player";
         health = 1000f;
+        MAX_HEALTH = 1000f;
     }
     
     @Override
@@ -59,7 +60,7 @@ public class Player extends Entity implements  CollisionListener{
             
             addComponent(new Collider(this,this));
             
-            pistol = new Shotgun(scene);
+            pistol = new Gun(scene);
             
         } catch (IOException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
