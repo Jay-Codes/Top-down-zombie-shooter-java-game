@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import jaycodes.topdown.zombie.game.gfx.Camera;
 import jaycodes.topdown.zombie.game.gfx.Renderer;
 import jaycodes.topdown.zombie.game.math.Vector2f;
 import jaycodes.topdown.zombie.game.scene.Scene;
@@ -118,4 +119,10 @@ public abstract class GameObject {
         return components;
     }
     
+    public Vector2f getOnScreenCoordinates(){
+        Camera camera = renderer.camera;
+        float xoffset  = (position.x - camera.position.x+camera.vpWidth/2)   - width/2;
+        float yoffset  = (position.y - camera.position.y+camera.vpHeight/2)  - height/2;
+        return  new Vector2f(xoffset, yoffset);
+    }
 }

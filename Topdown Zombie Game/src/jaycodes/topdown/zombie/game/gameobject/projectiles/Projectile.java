@@ -10,6 +10,7 @@ import jaycodes.topdown.zombie.game.gameobject.Collider;
 import jaycodes.topdown.zombie.game.gameobject.CollisionListener;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.math.Vector2f;
+import jaycodes.topdown.zombie.game.scene.Scene;
 
 /**
  *
@@ -22,11 +23,22 @@ public abstract class Projectile extends GameObject implements CollisionListener
     protected Collider collider;
 
     public Projectile() {
+        super();
         direction = new Vector2f();
         speed = 0;
         velocity = new Vector2f();
         collider = new Collider(this,this);
     }
+
+    public Projectile(Scene scene,Vector2f position,Vector2f direction, float speed, float width, float height) {
+        super(scene,position,width,height);
+        this.direction = direction;
+        this.speed = speed;
+        this.velocity = velocity;
+        this.collider = new Collider(this,this);
+    }
+    
+    
     
     public void setSpeed(float speed){
         this.speed = speed;

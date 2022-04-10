@@ -8,11 +8,13 @@ package jaycodes.topdown.zombie.game.scene;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gameobject.entities.Player;
 import jaycodes.topdown.zombie.game.gameobject.entities.zombies.basic_zombies.GreenZombie;
+import jaycodes.topdown.zombie.game.gameobject.projectiles.Projectile;
 import jaycodes.topdown.zombie.game.gfx.Sound;
 import jaycodes.topdown.zombie.game.input.InputManager;
 import jaycodes.topdown.zombie.game.main.GameManager;
@@ -28,11 +30,12 @@ public class GamePlayScene extends Scene{
     BufferedImage map ;
     Sound main;
     GameObject cameraTarget;
+    ArrayList<Projectile> projectiles ;
     
     public GamePlayScene() {
         super();
         name = "Game Play Scene";
-       
+        projectiles = new ArrayList<Projectile>();
     }
 
     @Override
@@ -79,6 +82,8 @@ public class GamePlayScene extends Scene{
         if(InputManager.getKeyPressed("escape")){
             SceneManager.startScene("welcomescreen");
         }
+        for (int i =0 ; i < projectiles.size() ; i++)
+            projectiles.get(i).updateObject();
     }
     
     @Override
@@ -89,6 +94,8 @@ public class GamePlayScene extends Scene{
     @Override
     public void drawScene(Graphics2D graphics) {
         renderer.drawImage(map, graphics, position,0,width,height);
+        for (int i =0 ; i < projectiles.size() ; i++)
+            projectiles.get(i).renderObject(graphics);
     }
 
     public Player GetPlayer(){
@@ -96,5 +103,11 @@ public class GamePlayScene extends Scene{
             if(gobj instanceof Player) return  (Player) gobj;
         
         return null;
+    }
+    public void  addProjectile(Projectile projectile){
+        projectiles.add(projectile);
+    }
+    public void  removeProjectile(Projectile projectile){
+        projectiles.remove(projectile);
     }
 }

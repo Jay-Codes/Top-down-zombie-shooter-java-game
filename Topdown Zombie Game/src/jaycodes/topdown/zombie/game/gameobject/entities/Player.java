@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import jaycodes.topdown.zombie.game.gameobject.Collider;
 import jaycodes.topdown.zombie.game.gameobject.CollisionListener;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
+import jaycodes.topdown.zombie.game.gameobject.weapons.Gun;
 import jaycodes.topdown.zombie.game.gfx.animations.Animation;
 import jaycodes.topdown.zombie.game.gfx.animations.AnimationController;
 import jaycodes.topdown.zombie.game.input.InputManager;
@@ -29,6 +30,7 @@ public class Player extends Entity implements  CollisionListener{
     
     Animation walk , attack;
     AnimationController controller;
+    Gun pistol;
     public Player(Scene scene,Vector2f position){
         super(scene,position,125,125);
         name = "player";
@@ -56,6 +58,8 @@ public class Player extends Entity implements  CollisionListener{
             
             addComponent(new Collider(this,this));
             
+            pistol = new Gun(scene);
+            
         } catch (IOException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,11 +72,24 @@ public class Player extends Entity implements  CollisionListener{
         manageAnimation();
         direction = new Vector2f();
         
+        
         manageInput();
         rotateMouseFollow();
         manageTransform();
+        manageShooting();
         
     }
+    
+    void manageShooting(){
+        
+        Vector2f mouse  = new Vector2f(InputManager.getMouseX(),InputManager.getMouseY());
+        Vector2f shootDirection = mouse.sub(getOnScreenCoordinates());
+        pistol.setDirection(shootDirection);
+        pistol.setPosition(position);
+        if ( InputManager.isMouseFirstPressed("left mouse"))
+            pistol.shoot();
+    }
+    
     void manageAnimation(){
         if (InputManager.getKeyPressed("q"))
             controller.setAnimation("walk");

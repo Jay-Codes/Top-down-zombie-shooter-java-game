@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import jaycodes.topdown.zombie.game.gameobject.Collider;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
+import jaycodes.topdown.zombie.game.gameobject.projectiles.Projectile;
 import jaycodes.topdown.zombie.game.gfx.Camera;
 import jaycodes.topdown.zombie.game.gfx.Renderer;
 import jaycodes.topdown.zombie.game.main.TopdownZombieGame;
@@ -22,6 +23,7 @@ public abstract class Scene extends GameObject{
 
     protected ArrayList<GameObject> gameObjects ;
     protected  ArrayList<Collider> colliders = new ArrayList<Collider>();
+    protected  ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
     
     protected boolean hasBeenStarted = false;
     Camera camera;
@@ -59,6 +61,9 @@ public abstract class Scene extends GameObject{
         for (int i = 0; i< gameObjects.size();i++){
             gameObjects.get(i).updateObject();
         }
+        for (int i = 0; i< projectiles.size();i++){
+            projectiles.get(i).updateObject();
+        }
             
     }
 
@@ -68,6 +73,9 @@ public abstract class Scene extends GameObject{
         drawScene(graphics);
         for (int i = 0; i< gameObjects.size();i++){
             gameObjects.get(i).renderObject(graphics);
+        }
+        for (int i = 0; i< projectiles.size();i++){
+            projectiles.get(i).renderObject(graphics);
         }
     }
     
@@ -116,5 +124,13 @@ public abstract class Scene extends GameObject{
     
     public void  removeCollider(Collider collider){
         colliders.remove(collider);
+    }
+    
+    public void addProjectile(Projectile projectile){
+        projectiles.add(projectile);
+    }
+    
+    public void  removeProjectile(Projectile projectile){
+        projectiles.remove(projectile);
     }
 }

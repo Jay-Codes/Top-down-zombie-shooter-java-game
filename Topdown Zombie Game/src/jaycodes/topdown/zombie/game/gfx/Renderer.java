@@ -34,6 +34,16 @@ public class  Renderer {
         g.drawRect(0,0,width,height);
         g.setTransform(new AffineTransform());
     }
+    
+    public void fillRect(Graphics2D g,Vector2f position , int width , int height){
+        xoffset  = (position.x - camera.position.x+camera.vpWidth/2)   - width/2;
+        yoffset  = (position.y - camera.position.y+camera.vpHeight/2)  - height/2;
+        transform = AffineTransform.getTranslateInstance(xoffset, yoffset);
+        g.setTransform(transform);
+        g.fillRect(0,0,width,height);
+        g.setTransform(new AffineTransform());
+    }
+    
     public void drawImage(BufferedImage image ,Graphics2D g2d, Vector2f position,float rotation, float width, float height){
 
         xoffset  = (position.x - camera.position.x+camera.vpWidth/2)   - width/2;
