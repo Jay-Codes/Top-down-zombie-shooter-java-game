@@ -1,6 +1,9 @@
 
 package jaycodes.topdown.zombie.game.gameobject.weapons;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gameobject.projectiles.Bullet;
 import jaycodes.topdown.zombie.game.math.Vector2f;
@@ -17,18 +20,28 @@ import jaycodes.topdown.zombie.game.scene.Scene;
  */
 public class Gun extends GameObject{
    float damage=  10;
-   float speed =  50;
+   float speed =  5;
+   float fireRate = 1;
     Vector2f direction = new Vector2f();
+    ActionListener action = new ActionListener() {
+       @Override
+       public void actionPerformed(ActionEvent e) { 
+           scene.addProjectile(new Bullet(scene,damage ,position, direction , speed));
+       }
+    };
+    Timer shooTimer;
 
     public Gun(Scene scene) {
-        
         super(scene);
-        
+        int delay = (int) (1000/fireRate);
+        shooTimer = new Timer(delay, action);
+        shooTimer.setRepeats(false);
     }
     
     
     public void shoot(){
-        scene.addProjectile(new Bullet(scene,damage ,position, direction , speed));
+       if (shooTimer.isRunning()) return;
+       shooTimer.start();
     }
 
     @Override
