@@ -63,5 +63,16 @@ public class Vector2f {
     public Vector2f clone(){
         return  new Vector2f(x, y);
     }
+    
+    public Vector2f rotateAngle(double angle){
+        return rotateRad(Math.toRadians(angle));
+    }
+    public Vector2f rotateRad(double radians){
+        double x , y;
+        Vector2f normalized = normailize();
+        x = (Math.cos(radians)* normalized.x)  - (Math.sin(radians) * normalized.y) ;
+        y = (Math.sin(radians)* normalized.x)  + (Math.cos(radians) * normalized.y) ;
+        return new Vector2f((float)x,(float) y);
+    }
 }
 

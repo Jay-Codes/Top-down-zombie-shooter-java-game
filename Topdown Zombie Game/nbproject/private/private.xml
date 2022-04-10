@@ -5,6 +5,7 @@
         <group>
             <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/main/GameManager.java</file>
             <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/gameobject/projectiles/Projectile.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/gfx/Renderer.java</file>
             <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/scene/SceneManager.java</file>
             <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/gameobject/weapons/Gun.java</file>
             <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/gameobject/projectiles/Bullet.java</file>

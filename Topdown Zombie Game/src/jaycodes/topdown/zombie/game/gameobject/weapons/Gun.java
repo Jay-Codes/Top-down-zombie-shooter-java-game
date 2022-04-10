@@ -24,11 +24,12 @@ import jaycodes.topdown.zombie.game.scene.Scene;
 public class Gun extends GameObject{
    float damage=  10;
    float speed =  15;
-   float fireRate = 4;
+   float fireRate = 14;
    boolean isAuto = false;
    int bursts = 0;
    Timer burstTimer ;
    int remainingBursts=1;
+   float accuracy = 80;
    
    
     Vector2f direction = new Vector2f();
@@ -39,11 +40,18 @@ public class Gun extends GameObject{
         int delay = (int) (1000/fireRate);
         shooTimer = new Timer(delay, doShoot);
         shooTimer.setRepeats(false);
-//        isAuto = true;
-        bursts = 10;
+        isAuto = true;
+        bursts = 2;
     }
     
-    
+    void releaseBullet(){
+        float baseAngle = 45;
+        float spread = baseAngle - baseAngle * (accuracy /100);
+        double value  = Math.random() -0.5;
+        double angle  = (value *2  ) * spread;
+        Vector2f dir = direction.rotateAngle(angle);
+        scene.addProjectile(new Bullet(scene,damage ,position,dir , speed));
+    }
     public void shoot(){
      if (shooTimer.isRunning()) return;
      if(!isAuto){
@@ -74,7 +82,7 @@ public class Gun extends GameObject{
     }
     
     ActionListener doShoot = (e)-> { 
-        scene.addProjectile(new Bullet(scene,damage ,position, direction , speed));
+        releaseBullet();
         
         if (bursts > 1){
             
@@ -83,8 +91,7 @@ public class Gun extends GameObject{
             ActionListener  doBurst = (event) -> {
                 
                 remainingBursts --;
-                scene.addProjectile(new Bullet(scene,damage ,position, direction , speed));
-                
+                releaseBullet();
                 if (remainingBursts <=0)
                     burstTimer.stop();
             };
