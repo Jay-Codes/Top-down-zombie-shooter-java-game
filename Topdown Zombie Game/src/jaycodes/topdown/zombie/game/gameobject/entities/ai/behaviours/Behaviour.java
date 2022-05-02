@@ -47,13 +47,16 @@ public abstract class Behaviour {
     
     public void handleArrival(){
         us.setVelocity(new Vector2f());
-        us.targetHasArrived();
+        us.targetHasArrived(target);
     }
 
     public void setTarget(GameObject target) {
         this.target = target;
     }
     
+    public float getDistance(){
+        return us.getPosition().distance(target.getPosition());
+    }
     
     public abstract void updateBehaviour();
 }

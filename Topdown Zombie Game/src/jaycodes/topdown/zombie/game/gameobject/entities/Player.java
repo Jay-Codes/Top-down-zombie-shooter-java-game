@@ -21,6 +21,7 @@ import jaycodes.topdown.zombie.game.gfx.animations.AnimationController;
 import jaycodes.topdown.zombie.game.input.InputManager;
 import jaycodes.topdown.zombie.game.math.Vector2f;
 import jaycodes.topdown.zombie.game.scene.Scene;
+import jaycodes.topdown.zombie.game.scene.SceneManager;
 import jaycodes.topdown.zombie.game.utilities.Util;
 
 /**
@@ -155,7 +156,7 @@ public class Player extends Entity implements  CollisionListener{
     }
 
     @Override
-    public void targetHasArrived() {
+    public void targetHasArrived(GameObject gobj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -167,5 +168,10 @@ public class Player extends Entity implements  CollisionListener{
     @Override
     public void onCollision(GameObject gameObject) {
 //        System.out.println(gameObject.getName());
+    }
+
+    @Override
+    public void kill() {
+        SceneManager.startScene("welcomescreen");
     }
 }

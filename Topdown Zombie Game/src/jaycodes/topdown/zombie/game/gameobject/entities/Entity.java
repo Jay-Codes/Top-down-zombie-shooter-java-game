@@ -63,7 +63,7 @@ public abstract class Entity extends GameObject {
     }
     
     
-    public abstract void targetHasArrived();
+    public abstract void targetHasArrived(GameObject target);
     public abstract  void targetHasnotArrived();
-    
+    public abstract void kill();
 }

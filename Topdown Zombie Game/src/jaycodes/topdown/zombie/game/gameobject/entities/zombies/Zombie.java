@@ -22,6 +22,11 @@ public abstract class Zombie extends  Entity implements CollisionListener{
     protected  AnimationController anim_controller;
     protected Behaviour behaviour;
     protected  float damage =10f;
+    public float timeToNextAttack = 1.2f;
+    public Entity lockedTarget;
+    public float attackRange=30f;
+    public boolean canMove = true;
+    
     public Zombie (Scene scene,Vector2f position , float width , float height){
         super(scene,position ,width ,height);
         health = 100;
@@ -45,6 +50,8 @@ public abstract class Zombie extends  Entity implements CollisionListener{
         
         if (behaviour != null) behaviour.update();
         
+        if (!canMove) return;
+        
         position = position.add(velocity);
         
         //Manage Rotation
@@ -63,4 +70,14 @@ public abstract class Zombie extends  Entity implements CollisionListener{
         if(anim_controller!= null)
             renderer.drawImage(anim_controller.getFrame(), graphics, position, rotationAngle, width, height);
     }
+    
+    public void onTargetRange(Entity entity){
+        attackPlayer(entity);
+    }
+    @Override
+    public void kill(){
+        scene.getGameObjects().remove(this);
+    }
+    
+    public abstract void attackPlayer(Entity entity);
 }

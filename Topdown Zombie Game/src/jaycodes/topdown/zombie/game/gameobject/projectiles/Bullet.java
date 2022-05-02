@@ -53,8 +53,7 @@ public class Bullet extends  Projectile{
             
             
             if (z.getHealth() <= 0){
-                scene.getGameObjects().remove(z);
-                
+                z.kill();
             }
         }
         

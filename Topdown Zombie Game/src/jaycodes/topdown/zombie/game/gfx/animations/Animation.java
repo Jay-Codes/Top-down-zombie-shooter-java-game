@@ -17,6 +17,7 @@ public abstract class Animation {
     float duration; // in seconds
     float index = 0;
     float sleeptime =0;
+    public boolean  isRunning = true;
     
     long now =0 , passed =0;
 
@@ -46,6 +47,7 @@ public abstract class Animation {
         if(index >=frames.length-1)
         {
             index=0;
+            isRunning =false;
             onAnimationComplete();
         }
         
@@ -62,7 +64,7 @@ public abstract class Animation {
     
     public void reset(){
         index=0;
+        isRunning = true;
     }
-    
     
 }

@@ -44,4 +44,7 @@ public class AnimationController {
     public void update() {
        currenAnimation.update();
     }
+    public boolean isRunning(){
+        return currenAnimation.isRunning;
+    }
 }
