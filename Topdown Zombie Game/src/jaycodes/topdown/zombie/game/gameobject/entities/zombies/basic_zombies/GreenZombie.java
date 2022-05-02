@@ -38,7 +38,7 @@ public class GreenZombie extends Zombie implements ActionListener{
     public GreenZombie (Scene scene,Vector2f position){
         super(scene,position ,120 ,120);
         health = 100;
-        speed = 1.2f;
+        speed = 70;
         direction = new Vector2f();
         damage =100f;
         timeToNextAttack=0.5f;

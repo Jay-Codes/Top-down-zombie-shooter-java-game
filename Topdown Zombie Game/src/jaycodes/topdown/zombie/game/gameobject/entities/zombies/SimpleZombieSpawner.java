@@ -16,7 +16,7 @@ import jaycodes.topdown.zombie.game.scene.Scene;
  * @author Jay
  */
 public class SimpleZombieSpawner extends GameObject{
-    public int spawnLimit = 100 , zombiesPerMinute = 8 ;
+    public int spawnLimit = 200 , zombiesPerMinute = 300 ;
     private int currentSpawnedUnits;
 
     Timer zombieSpawner;
@@ -30,7 +30,6 @@ public class SimpleZombieSpawner extends GameObject{
         zombieSpawner = new Timer((int)60000/zombiesPerMinute, e->{
             scene.addObject(new GreenZombie(scene,new Vector2f(80,80)));
             currentSpawnedUnits++;
-            System.out.println("woah");
             
         });
         zombieSpawner.setRepeats(true);

@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gameobject.entities.Player;
 import jaycodes.topdown.zombie.game.gameobject.entities.zombies.Zombie;
+import jaycodes.topdown.zombie.game.main.GameManager;
 import jaycodes.topdown.zombie.game.math.Vector2f;
 import jaycodes.topdown.zombie.game.scene.GamePlayScene;
 import jaycodes.topdown.zombie.game.scene.Scene;
@@ -35,7 +36,7 @@ public class Bullet extends  Projectile{
 
     @Override
     public void update() {
-        position = position.add(direction.normailize().scale(speed));
+        position = position.add(direction.normailize().scale(speed *GameManager.DELTA));
     }
 
     @Override

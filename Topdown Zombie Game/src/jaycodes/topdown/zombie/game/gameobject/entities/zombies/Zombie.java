@@ -11,6 +11,7 @@ import jaycodes.topdown.zombie.game.gameobject.CollisionListener;
 import jaycodes.topdown.zombie.game.gameobject.entities.Entity;
 import jaycodes.topdown.zombie.game.gameobject.entities.ai.behaviours.Behaviour;
 import jaycodes.topdown.zombie.game.gfx.animations.AnimationController;
+import jaycodes.topdown.zombie.game.main.GameManager;
 import jaycodes.topdown.zombie.game.math.Vector2f;
 import jaycodes.topdown.zombie.game.scene.Scene;
 
@@ -30,7 +31,7 @@ public abstract class Zombie extends  Entity implements CollisionListener{
     public Zombie (Scene scene,Vector2f position , float width , float height){
         super(scene,position ,width ,height);
         health = 100;
-        speed = 1.2f;
+        speed = 60f;
         direction = new Vector2f();
     }
     
@@ -52,7 +53,7 @@ public abstract class Zombie extends  Entity implements CollisionListener{
         
         if (!canMove) return;
         
-        position = position.add(velocity);
+        position = position.add(velocity.scale(GameManager.DELTA));
         
         //Manage Rotation
         double value = Math.atan((double)direction.y/(double)direction.x);

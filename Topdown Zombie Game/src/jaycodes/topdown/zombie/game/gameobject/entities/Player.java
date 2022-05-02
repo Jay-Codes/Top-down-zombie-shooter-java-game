@@ -19,6 +19,7 @@ import jaycodes.topdown.zombie.game.gameobject.weapons.Shotgun;
 import jaycodes.topdown.zombie.game.gfx.animations.Animation;
 import jaycodes.topdown.zombie.game.gfx.animations.AnimationController;
 import jaycodes.topdown.zombie.game.input.InputManager;
+import jaycodes.topdown.zombie.game.main.GameManager;
 import jaycodes.topdown.zombie.game.math.Vector2f;
 import jaycodes.topdown.zombie.game.scene.Scene;
 import jaycodes.topdown.zombie.game.scene.SceneManager;
@@ -38,6 +39,7 @@ public class Player extends Entity implements  CollisionListener{
         name = "player";
         health = 1000f;
         MAX_HEALTH = 1000f;
+        speed = 130f;
     }
     
     @Override
@@ -68,7 +70,6 @@ public class Player extends Entity implements  CollisionListener{
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
         transform = AffineTransform.getTranslateInstance(position.x-width/2,position.y-height/2);
-        speed = 3.6f;
     }
     
     @Override
@@ -101,12 +102,12 @@ public class Player extends Entity implements  CollisionListener{
             controller.setAnimation("attack");
         
         controller.update();
-        
+        rotationAngle = (float) (rotationAngle * GameManager.DELTA);
     }
 
     @Override
     public void render(Graphics2D graphics) {
-        renderer.drawImage(sprite, graphics, position, rotationAngle,width,height);
+        renderer.drawImage(sprite, graphics, position,rotationAngle ,width,height);
 //        renderer.drawImage(controller.getFrame(), graphics, position, rotationAngle, width, height);
     }
     private void  rotateMouseFollow(){
@@ -125,7 +126,7 @@ public class Player extends Entity implements  CollisionListener{
          if(adj < 0)
 		rotationAngle = (float) (-Math.PI + rotationAngle);
          
-         
+        
     }
     
     private void manageInput(){
@@ -149,7 +150,7 @@ public class Player extends Entity implements  CollisionListener{
         if(direction.getLength()>0)
             direction = direction.normailize();
         
-        position = position.add(direction.scale(speed));
+        position = position.add(direction.scale(speed * GameManager.DELTA));
         
         transform = AffineTransform.getTranslateInstance(position.x-width/2,position.y-height/2);
         

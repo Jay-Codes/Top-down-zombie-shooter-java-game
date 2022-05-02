@@ -20,7 +20,7 @@ import jaycodes.topdown.zombie.game.scene.Scene;
  */
 public class Gun extends GameObject{
    public float damage=  5;
-   public float speed =  15;
+   public float speed =  600;
    public float fireRate = 8;
    public boolean isAuto = false;
    public int bursts = 0;

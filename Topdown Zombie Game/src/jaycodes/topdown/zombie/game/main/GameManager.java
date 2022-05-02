@@ -6,6 +6,7 @@
 package jaycodes.topdown.zombie.game.main;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
@@ -28,6 +29,8 @@ public class GameManager extends Thread{
     private BufferStrategy bufferStrategy;
     private InputManager inputManager;
     private Scene scene;
+    public static  float DELTA = 0.0002f;
+    public static  float FPS = 200;
     
     public GameManager(Display display) {
         running = true;
@@ -59,6 +62,8 @@ public class GameManager extends Thread{
         
         Graphics2D g2d = (Graphics2D)graphics;
         scene.render(g2d);
+        g2d.setColor(Color.LIGHT_GRAY);
+        g2d.drawString("fps : " + (int)FPS, 5, 15);
         //main.playSound();
         //end of draing code
         bufferStrategy.show();
@@ -88,20 +93,12 @@ public class GameManager extends Thread{
         while (running){
             
             currentTime = System.nanoTime();
-            if( (currentTime-prevTime) >= timePerUpdate){
-                update();
-                render();
-                counter++;
-                prevTime = currentTime;
-            }
-            //Fps Counter code
             
-            now = System.nanoTime();
-            if ( (now - lastTime) >= 1000000000){
-                //System.out.println(counter + " updates per second");
-                counter=0;
-                lastTime = now;
-            }
+            DELTA = (float)(currentTime - prevTime)/1000000000.0f ;
+            FPS = 1/DELTA;
+            prevTime = currentTime;
+            update();
+            render();
         }
     }
     public Display getDisplay(){
