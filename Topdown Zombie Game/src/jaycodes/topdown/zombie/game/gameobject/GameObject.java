@@ -111,6 +111,10 @@ public abstract class GameObject {
     public void addComponent(Component component){
         components.add(component);
     }
+    
+    public void addCollider(Collider collider){
+            scene.addCollider(collider);
+    }
     public void removeComponent(Component component){
         components.remove(component);
     }

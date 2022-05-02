@@ -26,7 +26,6 @@ public class Collider extends Component{
         for (int i = 0; i < colliders.size(); i++) 
             if( colliders.get(i)!= this && getBounds().intersects(colliders.get(i).getBounds()))
                 listener.onCollision(colliders.get(i).gameObject);
-        
     }
     
     

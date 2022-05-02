@@ -62,6 +62,7 @@ public class Player extends Entity implements  CollisionListener{
             addComponent(new Collider(this,this));
             
             pistol = new Gun(scene);
+            pistol.accuracy=95;
             
         } catch (IOException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);

@@ -7,8 +7,10 @@ package jaycodes.topdown.zombie.game.gameobject.projectiles;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
+import jaycodes.topdown.zombie.game.gameobject.entities.Player;
 import jaycodes.topdown.zombie.game.gameobject.entities.zombies.Zombie;
 import jaycodes.topdown.zombie.game.math.Vector2f;
+import jaycodes.topdown.zombie.game.scene.GamePlayScene;
 import jaycodes.topdown.zombie.game.scene.Scene;
 
 /**
@@ -56,8 +58,8 @@ public class Bullet extends  Projectile{
                 z.kill();
             }
         }
-        
-        scene.getGameObjects().remove(this);
+        if( !(gameObject instanceof Player))
+            ((GamePlayScene)scene).removeProjectile(this);
     }
     
 }

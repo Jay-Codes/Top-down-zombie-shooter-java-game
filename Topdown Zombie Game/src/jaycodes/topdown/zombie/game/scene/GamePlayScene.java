@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gameobject.entities.Player;
+import jaycodes.topdown.zombie.game.gameobject.entities.zombies.SimpleZombieSpawner;
 import jaycodes.topdown.zombie.game.gameobject.entities.zombies.basic_zombies.GreenZombie;
 import jaycodes.topdown.zombie.game.gameobject.projectiles.Projectile;
 import jaycodes.topdown.zombie.game.gfx.Sound;
@@ -70,7 +71,8 @@ public class GamePlayScene extends Scene{
         
          
          addObject(new Player(this,new Vector2f(0,0)));
-         addObject(new GreenZombie(this,new Vector2f(80,80)));
+//         addObject(new GreenZombie(this,new Vector2f(80,80)));
+         addObject(new SimpleZombieSpawner(this));
          
          cameraTarget = getGameObjectByName("player");
          

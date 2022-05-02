@@ -42,6 +42,7 @@ public class GreenZombie extends Zombie implements ActionListener{
         direction = new Vector2f();
         damage =100f;
         timeToNextAttack=0.5f;
+        name="Green Zombie";
     }
 
     @Override

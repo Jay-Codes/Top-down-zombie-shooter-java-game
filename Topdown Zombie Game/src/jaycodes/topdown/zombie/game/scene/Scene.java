@@ -46,9 +46,6 @@ public abstract class Scene extends GameObject{
         init();
         camera.width=width;
         camera.height=height;
-        for (int i = 0; i< gameObjects.size();i++){
-            gameObjects.get(i).initObject();
-        }
         hasBeenStarted=true;
     }
     
@@ -88,6 +85,7 @@ public abstract class Scene extends GameObject{
     }
     
     public void addObject(GameObject gameobject){
+        gameobject.initObject();
         gameObjects.add(gameobject);
     }
 
