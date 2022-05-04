@@ -22,6 +22,11 @@ public class TopdownZombieGame {
     }
 
     public static int width = 800, height =600;
+    
+    public static float getApsectRatio(){
+        return (float)width/(float)height;
+    }
+    
     public static void main(String[] args) {
         // TODO code application logic here
         String title = "Zombie Game";

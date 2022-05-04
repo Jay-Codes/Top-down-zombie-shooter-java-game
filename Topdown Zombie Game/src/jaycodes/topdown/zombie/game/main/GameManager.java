@@ -65,6 +65,7 @@ public class GameManager extends Thread{
         //all the drawing goes here
         
         
+        
         Graphics2D g2d = (Graphics2D)backBuffer.getGraphics();
         g2d.clearRect(0, 0, display.getWidth(), display.getHeight());
         scene.render(g2d);
@@ -72,7 +73,7 @@ public class GameManager extends Thread{
         g2d.setFont(new Font("Arial", Font.BOLD, 20));
         g2d.drawString("fps : " + (int)FPS, 5, 25);
         //end of draing code
-        graphics.drawImage(backBuffer, 0,0, display.getWidth(), display.getHeight(), null);
+        graphics.drawImage(backBuffer, display.xPos ,display.yPos ,display.bufferWidth,display.bufferHeight, null);
         bufferStrategy.show();
         graphics.dispose();
         g2d.dispose();
