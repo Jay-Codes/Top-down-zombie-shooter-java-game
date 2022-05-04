@@ -7,9 +7,11 @@ package jaycodes.topdown.zombie.game.main;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import jaycodes.topdown.zombie.game.display.Display;
 import jaycodes.topdown.zombie.game.input.InputManager;
 import jaycodes.topdown.zombie.game.input.MouseInput;
@@ -31,6 +33,7 @@ public class GameManager extends Thread{
     private Scene scene;
     public static  float DELTA = 0.0002f;
     public static  float FPS = 200;
+    BufferedImage backBuffer;
     
     public GameManager(Display display) {
         running = true;
@@ -38,11 +41,13 @@ public class GameManager extends Thread{
         this.display=display;
     }
     public void init(){
+        backBuffer = new BufferedImage(TopdownZombieGame.width, TopdownZombieGame.height, BufferedImage.TYPE_INT_RGB);
         inputManager= new InputManager();
         SceneManager.initialize();
         SceneManager.startScene("welcomescreen");
         scene = SceneManager.getCurrentScene();
         scene.init();
+        
     }
     
     public void update(){// all your updating code goes in here
@@ -56,19 +61,21 @@ public class GameManager extends Thread{
         //System.out.println("rendering");
         initGraphics();
         Graphics graphics = bufferStrategy.getDrawGraphics();
-        graphics.clearRect(0, 0, display.getWidth(), display.getHeight());
+        graphics.clearRect(0, 0, TopdownZombieGame.width, TopdownZombieGame.height);
         //all the drawing goes here
         
         
-        Graphics2D g2d = (Graphics2D)graphics;
+        Graphics2D g2d = (Graphics2D)backBuffer.getGraphics();
+        g2d.clearRect(0, 0, display.getWidth(), display.getHeight());
         scene.render(g2d);
         g2d.setColor(Color.LIGHT_GRAY);
-        g2d.drawString("fps : " + (int)FPS, 5, 15);
-        //main.playSound();
+        g2d.setFont(new Font("Arial", Font.BOLD, 20));
+        g2d.drawString("fps : " + (int)FPS, 5, 25);
         //end of draing code
+        graphics.drawImage(backBuffer, 0,0, display.getWidth(), display.getHeight(), null);
         bufferStrategy.show();
         graphics.dispose();
-        
+        g2d.dispose();
     }
     public void initGraphics(){
         Canvas canvas = display.getCanvas();
@@ -77,7 +84,7 @@ public class GameManager extends Thread{
         if (bufferStrategy != null )
             return;
         
-        canvas.createBufferStrategy(3);
+        canvas.createBufferStrategy(2);
         bufferStrategy = canvas.getBufferStrategy();
         
     }

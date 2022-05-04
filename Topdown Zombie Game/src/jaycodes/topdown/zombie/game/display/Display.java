@@ -36,7 +36,7 @@ public class Display extends JFrame {
         canvas.setSize(width, height);
         canvas.setBackground(bg);
         add(canvas);
-        setResizable(false);
+//        setResizable(false);
         keyInput = new KeyInput();
         mouseInput = new MouseInput();
         canvas.addKeyListener(keyInput);

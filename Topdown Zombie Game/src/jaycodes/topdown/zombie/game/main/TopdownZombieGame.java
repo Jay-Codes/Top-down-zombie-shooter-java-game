@@ -16,13 +16,15 @@ public class TopdownZombieGame {
     /**
      * @param args the command line arguments
      */
-    
-    public static int width = 640, height = 480;
+//    4:3
+
+    public TopdownZombieGame() {
+    }
+
+    public static int width = 800, height =600;
     public static void main(String[] args) {
         // TODO code application logic here
         String title = "Zombie Game";
-//        width = 1280;
-//        height = 768;
         Display display = new Display(title,width,height,new Color(0, 0, 0));
         
         display.display();

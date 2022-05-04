@@ -16,7 +16,7 @@ import jaycodes.topdown.zombie.game.scene.Scene;
  * @author Jay
  */
 public class SimpleZombieSpawner extends GameObject{
-    public int spawnLimit = 200 , zombiesPerMinute = 300 ;
+    public int spawnLimit = 200 , zombiesPerMinute = 10 ;
     private int currentSpawnedUnits;
 
     Timer zombieSpawner;
