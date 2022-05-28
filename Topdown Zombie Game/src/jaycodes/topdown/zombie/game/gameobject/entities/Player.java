@@ -112,12 +112,10 @@ public class Player extends Entity implements  CollisionListener{
     }
     private void  rotateMouseFollow(){
         float mX,mY , pX ,pY ,opp ,adj;
-        mX = InputManager.getMouseX();
-        mY = InputManager.getMouseY();
-        pX = renderer.xoffset ;
-        pY = renderer.yoffset ;
-        opp = mX - pX;
-        adj = mY - pY;
+        Vector2f mouse  = new Vector2f(InputManager.getMouseX(),InputManager.getMouseY());
+        Vector2f shootDirection = mouse.sub(getOnScreenCoordinates());
+        opp = shootDirection.x;
+        adj = shootDirection.y;
         
         double value = Math.atan((double)opp/(double)adj);
         

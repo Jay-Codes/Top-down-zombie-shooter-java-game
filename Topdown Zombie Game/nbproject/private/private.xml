@@ -3,9 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/main/GameManager.java</file>
-            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/main/TopdownZombieGame.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/gameobject/entities/zombies/SimpleZombieSpawner.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/scene/WelcomeScene.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/gfx/Renderer.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/gameobject/entities/zombies/basic_zombies/GreenZombie.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/scene/SceneManager.java</file>
             <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/display/Display.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/scene/GamePlayScene.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/gameobject/projectiles/Bullet.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/input/MouseInput.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/scene/Scene.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/main/TopdownZombieGame.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/gameobject/Component.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/gameobject/GameObject.java</file>
+            <file>file:/D:/Programming%20Projects/Java%20Games/Top-down-zombie-shooter-java-game/Topdown%20Zombie%20Game/src/jaycodes/topdown/zombie/game/gameobject/entities/Player.java</file>
         </group>
     </open-files>
 </project-private>

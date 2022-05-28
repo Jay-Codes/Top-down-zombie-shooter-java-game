@@ -65,8 +65,6 @@ public class GreenZombie extends Zombie implements ActionListener{
             
             behaviour.attackRange = attackRange;
             
-            addComponent(new Collider(this,this));
-            
             attackTimer = new Timer((int) (timeToNextAttack*1000), this);
             attackTimer.setRepeats(false);
         } catch (IOException ex) {

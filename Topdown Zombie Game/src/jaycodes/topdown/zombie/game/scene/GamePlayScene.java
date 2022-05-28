@@ -90,7 +90,7 @@ public class GamePlayScene extends Scene{
     
     @Override
     public void end() {
-        
+//        init();
     }
 
     @Override
