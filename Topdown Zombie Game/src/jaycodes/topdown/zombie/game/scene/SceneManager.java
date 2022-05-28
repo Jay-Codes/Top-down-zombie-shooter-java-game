@@ -30,8 +30,12 @@ public class SceneManager {
             if(temp.getName().equals(scenename)){
                 if(currentScene!= null)
                     currentScene.endScene();
-                
                 currentScene = temp;
+                
+                if(currentScene.getName().equals("Game Play Scene"))
+                    currentScene = new GamePlayScene();
+                else if (currentScene.getName().equals("welcomescreen"))
+                    currentScene = new WelcomeScene();
                 currentScene.startScene();
                 
             }

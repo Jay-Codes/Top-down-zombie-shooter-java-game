@@ -22,8 +22,8 @@ import jaycodes.topdown.zombie.game.math.Vector2f;
 public abstract class Scene extends GameObject{
 
     protected ArrayList<GameObject> gameObjects ;
-    protected  ArrayList<Collider> colliders = new ArrayList<Collider>();
-    protected  ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+    protected  ArrayList<Collider> colliders ;
+    protected  ArrayList<Projectile> projectiles ;
     
     protected boolean hasBeenStarted = false;
     Camera camera;
@@ -32,7 +32,8 @@ public abstract class Scene extends GameObject{
         super();
         scene = this;
         gameObjects = new ArrayList<>();
-        
+        colliders =  new ArrayList<Collider>();
+        projectiles = new ArrayList<Projectile>();
     }
     
     

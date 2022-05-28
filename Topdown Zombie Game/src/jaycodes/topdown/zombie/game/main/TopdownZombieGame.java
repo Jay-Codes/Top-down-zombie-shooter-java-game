@@ -22,7 +22,7 @@ public class TopdownZombieGame {
     }
 
     public static int width = 800, height =600;
-    
+    public static  Display display;
     public static float getApsectRatio(){
         return (float)width/(float)height;
     }
@@ -30,7 +30,7 @@ public class TopdownZombieGame {
     public static void main(String[] args) {
         // TODO code application logic here
         String title = "Zombie Game";
-        Display display = new Display(title,width,height,new Color(0, 0, 0));
+        display = new Display(title,width,height,new Color(0, 0, 0));
         
         display.display();
         

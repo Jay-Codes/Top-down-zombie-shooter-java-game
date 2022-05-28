@@ -27,12 +27,15 @@ public abstract class Zombie extends  Entity implements CollisionListener{
     public Entity lockedTarget;
     public float attackRange=30f;
     public boolean canMove = true;
+    protected Collider collider;
     
     public Zombie (Scene scene,Vector2f position , float width , float height){
         super(scene,position ,width ,height);
         health = 100;
         speed = 60f;
         direction = new Vector2f();
+        collider =  new Collider(this, this);
+        addComponent(collider);
     }
     
     public Zombie (Scene scene,Vector2f position , float width , float height,float health , float speed){
@@ -40,7 +43,8 @@ public abstract class Zombie extends  Entity implements CollisionListener{
         super.health = health;
         super.speed = speed;
         direction = new Vector2f();
-        addComponent(new Collider(this, this));
+        collider =  new Collider(this, this);
+        addComponent(collider);
     }
 
     @Override
@@ -78,6 +82,7 @@ public abstract class Zombie extends  Entity implements CollisionListener{
     @Override
     public void kill(){
         scene.getGameObjects().remove(this);
+        scene.removeCollider(collider);
     }
     
     public abstract void attackPlayer(Entity entity);
