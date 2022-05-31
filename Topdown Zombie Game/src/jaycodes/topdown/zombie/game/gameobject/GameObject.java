@@ -29,6 +29,7 @@ public abstract class GameObject {
     protected Renderer renderer;
     protected Scene scene;
     protected ArrayList<Component> components = new ArrayList<Component>();
+    protected boolean disabled = false;
     
 
     
@@ -38,6 +39,8 @@ public abstract class GameObject {
         position = new Vector2f();
         transform = new AffineTransform();
         width = height = 50f;
+        renderer = new Renderer();
+        renderer.setCamera(scene.getCamera());
     }
     
     public GameObject(){
@@ -68,10 +71,12 @@ public abstract class GameObject {
     
     public void updateObject()
     {
+        if (disabled)return;
         update();
         for (Component component : components)component.updateComponent();
     }
     public void renderObject(Graphics2D graphics){
+        if (disabled) return;
         render(graphics);
         for (Component component : components) component.renderComponent(graphics);
     }
@@ -132,4 +137,21 @@ public abstract class GameObject {
         yoffset =  (yoffset/TopdownZombieGame.height)*TopdownZombieGame.display.bufferHeight;
         return  new Vector2f(xoffset, yoffset);
     }
+
+    public Vector2f getOnScreenUICoordinates(){
+        float xoffset  = (position.x )  ;
+        float yoffset  = (position.y )  ;
+        xoffset = (xoffset/TopdownZombieGame.width)*TopdownZombieGame.display.bufferWidth + TopdownZombieGame.display.xPos;
+        yoffset =  (yoffset/TopdownZombieGame.height)*TopdownZombieGame.display.bufferHeight;
+        return  new Vector2f(xoffset, yoffset);
+    }
+    
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
+    
 }

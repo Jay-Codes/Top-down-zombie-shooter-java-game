@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jaycodes.topdown.zombie.game.gfx.Camera;
+import jaycodes.topdown.zombie.game.gfx.ui.UIButton;
 import jaycodes.topdown.zombie.game.input.InputManager;
 import jaycodes.topdown.zombie.game.main.TopdownZombieGame;
 import jaycodes.topdown.zombie.game.math.Vector2f;
@@ -44,6 +45,8 @@ public class WelcomeScene extends Scene{
         } catch (IOException ex) {
             Logger.getLogger(WelcomeScene.class.getName()).log(Level.SEVERE, null, ex);
         }
+        UIButton  btn =  new UIButton(scene);
+         uiManager.addUIComponent(btn);
     }
 
     @Override

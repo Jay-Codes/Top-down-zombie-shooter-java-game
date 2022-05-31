@@ -12,6 +12,8 @@ import jaycodes.topdown.zombie.game.gameobject.GameObject;
 import jaycodes.topdown.zombie.game.gameobject.projectiles.Projectile;
 import jaycodes.topdown.zombie.game.gfx.Camera;
 import jaycodes.topdown.zombie.game.gfx.Renderer;
+import jaycodes.topdown.zombie.game.gfx.ui.UIButton;
+import jaycodes.topdown.zombie.game.gfx.ui.UIManager;
 import jaycodes.topdown.zombie.game.main.TopdownZombieGame;
 import jaycodes.topdown.zombie.game.math.Vector2f;
 
@@ -24,6 +26,7 @@ public abstract class Scene extends GameObject{
     protected ArrayList<GameObject> gameObjects ;
     protected  ArrayList<Collider> colliders ;
     protected  ArrayList<Projectile> projectiles ;
+    protected UIManager uiManager;
     
     protected boolean hasBeenStarted = false;
     Camera camera;
@@ -43,7 +46,7 @@ public abstract class Scene extends GameObject{
         camera = new Camera(new Vector2f(0, 0), TopdownZombieGame.width, TopdownZombieGame.height);
         renderer = new Renderer();
         renderer.setCamera(camera);
-        
+        uiManager = new UIManager(this);
         init();
         camera.width=width;
         camera.height=height;
@@ -54,6 +57,7 @@ public abstract class Scene extends GameObject{
 
     @Override
     public void update() {
+        uiManager.updateObject();
         updateScene();
         camera.update();
         for (int i = 0; i< gameObjects.size();i++){
@@ -75,6 +79,7 @@ public abstract class Scene extends GameObject{
         for (int i = 0; i< projectiles.size();i++){
             projectiles.get(i).renderObject(graphics);
         }
+        uiManager.renderObject(graphics);
     }
     
     protected abstract  void end();

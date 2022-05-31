@@ -5,7 +5,6 @@
  */
 package jaycodes.topdown.zombie.game.gfx;
 
-import com.sun.crypto.provider.PBEWithMD5AndDESCipher;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -38,6 +37,15 @@ public class  Renderer {
     public void fillRect(Graphics2D g,Vector2f position , int width , int height){
         xoffset  = (position.x - camera.position.x+camera.vpWidth/2)   - width/2;
         yoffset  = (position.y - camera.position.y+camera.vpHeight/2)  - height/2;
+        transform = AffineTransform.getTranslateInstance(xoffset, yoffset);
+        g.setTransform(transform);
+        g.fillRect(0,0,width,height);
+        g.setTransform(new AffineTransform());
+    }
+    
+    public void fillRectOnScreen(Graphics2D g,Vector2f position , int width , int height){
+        xoffset  = (position.x )   ;
+        yoffset  = (position.y )  ;
         transform = AffineTransform.getTranslateInstance(xoffset, yoffset);
         g.setTransform(transform);
         g.fillRect(0,0,width,height);

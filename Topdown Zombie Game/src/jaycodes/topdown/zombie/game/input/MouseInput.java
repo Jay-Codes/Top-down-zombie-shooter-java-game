@@ -22,6 +22,8 @@ public class MouseInput implements MouseWheelListener , MouseMotionListener ,Mou
     
     public static  boolean buttons [];
     public static  boolean prevButtonPresses [];
+    
+    public static boolean isPressed = false;
 
     public MouseInput() {
         initButtons(100);
@@ -63,6 +65,7 @@ public class MouseInput implements MouseWheelListener , MouseMotionListener ,Mou
         } catch (Exception ex) {
 
         }
+        isPressed = true;
     }
 
     @Override
@@ -73,6 +76,7 @@ public class MouseInput implements MouseWheelListener , MouseMotionListener ,Mou
         } catch (Exception ex) {
 
         }
+        isPressed = false;
     }
 
     @Override
