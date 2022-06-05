@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jaycodes.topdown.zombie.game.gfx.Camera;
 import jaycodes.topdown.zombie.game.gfx.ui.UIButton;
+import jaycodes.topdown.zombie.game.gfx.ui.welcomescreen.WelcomeScreenUIManager;
 import jaycodes.topdown.zombie.game.input.InputManager;
 import jaycodes.topdown.zombie.game.main.TopdownZombieGame;
 import jaycodes.topdown.zombie.game.math.Vector2f;
@@ -30,7 +31,7 @@ public class WelcomeScene extends Scene{
     
     @Override
     public void drawScene(Graphics2D graphics) {
-        graphics.drawImage(sprite, 0, 0,640,480, null);
+        graphics.drawImage(sprite, 0, 0,800,600, null);
     }
 
     @Override
@@ -41,12 +42,13 @@ public class WelcomeScene extends Scene{
     public void init() {
         camera = new Camera(new Vector2f(300, 300), TopdownZombieGame.width, TopdownZombieGame.height);
         try {
-            sprite = Util.loadImageFromFile("resources/images/loadingscreens/welcomescreen.jpg");
+            sprite = Util.loadImageFromFile("resources/images/ui/Home/WelcomeScreen.jpg");
         } catch (IOException ex) {
             Logger.getLogger(WelcomeScene.class.getName()).log(Level.SEVERE, null, ex);
         }
-        UIButton  btn =  new UIButton(scene);
-         uiManager.addUIComponent(btn);
+//        UIButton  btn =  new UIButton(scene);
+//         uiManager.addUIComponent(btn);
+           uiManager = new WelcomeScreenUIManager(this);
     }
 
     @Override

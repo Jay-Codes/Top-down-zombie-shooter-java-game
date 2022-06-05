@@ -51,6 +51,14 @@ public class  Renderer {
         g.fillRect(0,0,width,height);
         g.setTransform(new AffineTransform());
     }
+    public void drawImageOnScreen(Graphics2D g,Vector2f position , float width , float height,BufferedImage image){
+        xoffset  = (position.x )   ;
+        yoffset  = (position.y )  ;
+        transform = AffineTransform.getTranslateInstance(xoffset, yoffset);
+        g.setTransform(transform);
+        g.drawImage(image, 0, 0,(int) width,(int) height, null);
+        g.setTransform(new AffineTransform());
+    }
     
     public void drawImage(BufferedImage image ,Graphics2D g2d, Vector2f position,float rotation, float width, float height){
 

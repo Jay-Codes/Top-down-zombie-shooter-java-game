@@ -38,6 +38,7 @@ public class Display extends JFrame implements  ComponentListener {
         bufferWidth = width;
         setTitle(title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setUndecorated(true);
         setLocationRelativeTo(null);
         canvas = new Canvas();
         canvas.setSize(width, height);

@@ -13,7 +13,7 @@ import jaycodes.topdown.zombie.game.scene.Scene;
  *
  * @author Jay
  */
-public class UIManager extends GameObject{
+ public class UIManager extends GameObject{
     
     ArrayList<UIComponent> uiComponents ;
 

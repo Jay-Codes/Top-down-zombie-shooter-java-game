@@ -35,7 +35,7 @@ public abstract class UIComponent extends GameObject{
 
     @Override
     public void update() {
-        float xFactor = TopdownZombieGame.display.bufferWidth/(float)TopdownZombieGame.width ,yFactor = TopdownZombieGame.display.bufferHeight/TopdownZombieGame.height;
+        float xFactor = TopdownZombieGame.display.bufferWidth/(float)TopdownZombieGame.width ,yFactor = TopdownZombieGame.display.bufferHeight/(float)TopdownZombieGame.height;
         currentBackgroundColor = backGroundColor;
         if (disabled) currentBackgroundColor = disabledColor;
         float mX = InputManager.getMouseX() , mY = InputManager.getMouseY();
